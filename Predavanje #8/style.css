@@ -1,0 +1,37 @@
+
+.carSpan {
+    margin-left: 10px;
+}
+
+.imgWrapper {
+    position: relative;
+}
+.imgWrapper img{
+    width: 100%;
+    object-fit: contain;
+}
+.newElement {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+#products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    gap: 10px;
+
+
+}
+.product {
+    width: 25%;
+
+}
+
+
