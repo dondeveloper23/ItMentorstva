@@ -54,18 +54,22 @@ function createMealDivs (mealList) {
     }
 }
 
+// Funkcija koja vraca string random koktela
+
 async function getRandomCocktail() {
     let cocktail = await getCocktailDBData("random.php")
     return await cocktail.drinks[0].strDrink
 
 }
 
+// Api poziv za CocktailDB
 
 async function getCocktailDBData (endpoint) {
     let response = await fetch(cocktailsApi+endpoint);
     return await response.json();
 }
 
+// API Poziv za MealDB
 
 async function getMealDBData (endpoint) {
     let response = await fetch(mealDbApi+endpoint);
