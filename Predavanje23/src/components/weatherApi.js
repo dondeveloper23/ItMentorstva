@@ -1,25 +1,47 @@
 import axios from "axios";
-const apiKey = "f854567260b94aacbe8150111251410"
+
 
 export async function getCurrentWeatherForLocation(location) {
-    return  await axios.get("https://api.weatherapi.com/v1/current.json", {
-        params: {
-            key: apiKey,
-            q: location,
-            aqi: "no"
-        }
-    })
+    try {
+        return  await axios.get(process.env.API_URL + "current.json", {
+            params: {
+                key: process.env.API_KEY,
+                q: location,
+                aqi: "no"
+            }
+        })
+    } catch (error) {
+        return alert("Something went wrong! Please try again later");
+    }
 
 }
 
 export async function getDaysWeatherForLocation(location, days) {
-    return  await axios.get("https://api.weatherapi.com/v1/forecast.json", {
-        params: {
-            key: apiKey,
-            q: location,
-            aqi: "no",
-            days: 7
-        }
-    })
+    try {
+        return  await axios.get(process.env.API_URL + "forecast.json", {
+            params: {
+                key: process.env.API_KEY,
+                q: location,
+                aqi: "no",
+                days: days
+            }
+        })
+    } catch (exception) {
+        return alert("Something went wrong! Please try again later");
+    }
 
+}
+
+export async function getWeatherInFuture(location, date) {
+    try {
+        return  await axios.get(process.env.API_URL + "future.json", {
+            params: {
+                key: process.env.API_KEY,
+                q: location,
+                dt: date
+            }
+        })
+    } catch (exception) {
+        return alert("Something went wrong! Please try again");
+    }
 }

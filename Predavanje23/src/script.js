@@ -1,34 +1,58 @@
-
 import {getUserLocation} from "./components/locations";
-import {getCurrentWeatherForLocation, getDaysWeatherForLocation} from "./components/weatherApi";
-
-// https://api.weatherapi.com/v1/current.json?key=&q=London&aqi=no
+import {getCurrentWeatherForLocation, getDaysWeatherForLocation, getWeatherInFuture} from "./components/weatherApi";
+import {getDateInFuture} from "./helpers/datehelper";
+import {elementAppend} from "./components/elementAppend";
+import {checkLocation} from "./helpers/checklocation";
+import {isNight} from "./components/isNight";
 
 // HTML Elements
 const changeButton = document.querySelector("#change-button");
-const maxTempDiv = document.getElementById("max-temp-div");
+const sevenTempDiv = document.getElementById("seven-temp-div");
+const threeTempDiv = document.getElementById("three-temp-div");
+const thirtyTempDiv = document.getElementById("thirty-temp-div");
+const myLocationBtn = document.getElementById("my-location-btn");
+const headerWrapper = document.getElementById("header-wrapper");
 
+// App
 let location = localStorage.getItem("location") || getUserLocation();
-localStorage.setItem("location", location);
+setLocation(location)
 
-changeButton.addEventListener("click", () => {
-    location = getUserLocation()
-    localStorage.setItem("location", location);
+await app(location)
 
+
+// Event listeners
+changeButton.addEventListener("click", async () => {
+    let newLocation = getUserLocation()
+    setLocation(newLocation)
+    await app(newLocation)
+
+
+})
+myLocationBtn.addEventListener("click",  async () => {
+    let location = await checkLocation();
+    await app(location);
 })
 
 
-const response = await getCurrentWeatherForLocation(location)
 
-if (!response.data.current.is_day) {
-    document.body.style.backgroundColor = "#171c2b"
+
+// Functions
+export function setLocation(newLocation) {
+    location = newLocation;
+    localStorage.setItem("location", newLocation);
 }
 
-const daysWeatherResponse = await getDaysWeatherForLocation(location, 7);
+async function  app(location) {
+    await elementAppend(threeTempDiv, location, 3);
+    await elementAppend(sevenTempDiv, location, 7);
+    await elementAppend(thirtyTempDiv, location, 30);
+    await isNight(location)
+    createHeader(location)
+}
 
-for (let day of daysWeatherResponse.data.forecast.forecastday) {
-    let maxTempDay = document.createElement("p");
-    maxTempDay.textContent = day.day.maxtemp_c
-
-    maxTempDiv.append(maxTempDay);
+function createHeader (location) {
+    headerWrapper.innerHTML = ''
+    let header = document.createElement("h1");
+    header.innerText = location.toUpperCase();
+    headerWrapper.appendChild(header);
 }
