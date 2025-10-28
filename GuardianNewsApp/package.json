@@ -1,0 +1,21 @@
+{
+  "name": "guardiannewsapp",
+  "version": "1.0.0",
+  "description": "News Application",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "author": "Don Developer",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv-webpack": "^8.1.1",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.12.2"
+  }
+}

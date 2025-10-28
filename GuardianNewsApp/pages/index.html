@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Guardian News App</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+<h1>Guardian News App</h1>
+<div id="form-wrapper">
+    <form>
+        <input type="text" id="search-input" placeholder="Enter a news title...">
+
+        <select id="category-select">
+            <option value="">Select a category</option>
+        </select>
+
+        <input type="date" id="from-date">
+        <input type="date" id="to-date">
+        <select id="sort-select" name="order-by">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="relevance">Relevance</option>
+        </select>
+        <button type="button" id="search-button">Search</button>
+        <button id="save-search-button" type="button">Save Search</button>
+    </form>
+</div>
+<div id="save-bookmark-wrapper">
+    <div id="saved-search-wrapper">
+        <h2>Saved Searches</h2>
+        <form>
+            <select id="saved-search-select">
+
+            </select>
+            <button type="button" id="search-button-saved">Search</button>
+            <button type="button" id="delete-search-button">Delete Search</button>
+        </form>
+
+    </div>
+    <div id="bookmarks-save">
+        <button id="bookmarks-button">Check Bookmarks</button>
+    </div>
+</div>
+
+<div id="results-wrapper">
+
+</div>
+<button id="load-more-button" style="display: none">Load More</button>
+<script src="../dist/main.min.js"></script>
+</body>
+</html>
